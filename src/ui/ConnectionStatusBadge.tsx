@@ -69,7 +69,7 @@ export function ConnectionStatusBadge({ status }: { status: ConnectionStatus }) 
   return (
     <span
       className={clsx(
-        'inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-2xs font-bold',
+        'inline-flex h-11 items-center gap-1.5 rounded-md px-2 text-2xs font-bold',
         config.bg,
         config.color,
       )}

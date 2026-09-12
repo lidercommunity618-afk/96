@@ -29,7 +29,7 @@ export function SymbolSelector() {
     <div ref={ref} className="relative min-w-0 flex-1 sm:flex-none">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-1.5 rounded-lg bg-base-800 px-3 py-1.5 text-sm font-semibold text-base-100 transition hover:bg-base-700 sm:w-auto"
+        className="flex h-11 w-full items-center justify-between gap-1.5 rounded-lg bg-base-800 px-3 text-sm font-semibold text-base-100 transition hover:bg-base-700 sm:w-auto"
       >
         <span className="truncate">{selected?.displaySymbol ?? symbolId}</span>
         <ChevronDown size={14} className="shrink-0 transition" style={{ transform: open ? 'rotate(180deg)' : undefined }} />

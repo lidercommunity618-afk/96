@@ -47,13 +47,13 @@ export function Header({ onAiAnalyze, aiLoading }: HeaderProps) {
         </div>
 
         {/* Timeframe selector — compact, scrollable if it still overflows */}
-        <div className="flex shrink-0 items-center gap-0.5 overflow-x-auto rounded-lg bg-base-800 p-1 no-scrollbar lg:overflow-visible">
+        <div className="flex h-11 shrink-0 items-center gap-0.5 overflow-x-auto rounded-lg bg-base-800 p-1 no-scrollbar lg:overflow-visible">
           {TIMEFRAMES.map((tf) => (
             <button
               key={tf}
               onClick={() => setTimeframe(tf)}
               className={clsx(
-                'shrink-0 rounded-md px-2 py-1.5 text-center text-2xs font-semibold transition sm:px-2 sm:text-2xs lg:px-3 lg:text-xs',
+                'h-full shrink-0 rounded-md px-2 text-center text-2xs font-semibold transition sm:px-2 sm:text-2xs lg:px-3 lg:text-xs',
                 'w-8 sm:w-8 lg:w-10',
                 tf === timeframe
                   ? 'bg-primary-600 text-white'
@@ -99,7 +99,7 @@ export function Header({ onAiAnalyze, aiLoading }: HeaderProps) {
           {/* Market open/closed badge */}
           <span
             className={clsx(
-              'flex shrink-0 items-center rounded-md px-2 py-1.5 text-2xs font-bold sm:px-1.5 sm:py-1',
+              'flex h-11 shrink-0 items-center rounded-md px-2 text-2xs font-bold sm:px-1.5',
               marketOpen ? 'bg-success-700/30 text-success-400' : 'bg-accent-700/30 text-accent-400',
             )}
           >
@@ -122,7 +122,7 @@ export function Header({ onAiAnalyze, aiLoading }: HeaderProps) {
 
           <button
             onClick={() => setStrategiesOpen(true)}
-            className="flex shrink-0 items-center gap-1 rounded-lg bg-base-800 p-2 text-base-300 transition hover:bg-base-700 hover:text-base-100 sm:p-2"
+            className="flex h-11 w-11 shrink-0 items-center justify-center gap-1 rounded-lg bg-base-800 p-0 text-base-300 transition hover:bg-base-700 hover:text-base-100"
             aria-label="Стратегии"
           >
             <Boxes size={16} />

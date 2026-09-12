@@ -62,7 +62,7 @@ export function CandleTimer() {
   const isStale = !marketClosed && candleLifecycle === 'stale';
 
   return (
-    <span className="flex items-center gap-1 rounded-md bg-base-800/60 px-2 py-1.5 sm:px-1.5 sm:py-1">
+    <span className="flex h-11 items-center gap-1 rounded-md bg-base-800/60 px-2 sm:px-1.5">
       <Timer
         size={13}
         className={clsx(

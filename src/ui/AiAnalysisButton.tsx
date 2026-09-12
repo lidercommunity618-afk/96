@@ -11,7 +11,7 @@ export function AiAnalysisButton({ onClick, loading }: { onClick: () => void; lo
       onClick={onClick}
       disabled={loading}
       className={clsx(
-        'flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-2xs font-semibold transition sm:py-1.5',
+        'flex h-11 items-center gap-1.5 rounded-lg px-2.5 text-2xs font-semibold transition',
         loading
           ? 'bg-base-800 text-base-500'
           : 'bg-secondary-700/30 text-secondary-400 hover:bg-secondary-700/50',
