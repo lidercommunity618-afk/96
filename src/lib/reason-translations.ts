@@ -65,6 +65,21 @@ export const REASON_TRANSLATION_RULES: readonly ReasonRule[] = [
   { pattern: /^OB Breaker Block strategy.*$/, translate: () => 'Подтверждение стратегией "Брейкер-блок ордер-блока"' },
   { pattern: /^Harmonic Pattern strategy.*$/, translate: () => 'Подтверждение гармоническим паттерном' },
   {
+    // "gartley harmonic strategy (+0.50)" / "butterfly harmonic strategy (+0.50)" и т.д.
+    // harmonicType различает Gartley/Bat/Crab/Butterfly/AB=CD (audit rec. #3).
+    pattern: /^(gartley|bat|crab|butterfly|ab-cd) harmonic strategy.*$/,
+    translate: (m) => {
+      const labels: Record<string, string> = {
+        gartley: 'Гартли',
+        bat: 'Летучая мышь',
+        crab: 'Краб',
+        butterfly: 'Бабочка',
+        'ab-cd': 'AB=CD',
+      };
+      return `Подтверждение гармоническим паттерном «${labels[m[1]] ?? m[1]}»`;
+    },
+  },
+  {
     // "order-block-continuation pattern (72%)" / "hammer pattern (65%) + 2 confirming patterns"
     pattern: /^(.+) pattern \((\d+)%\)(.*)$/,
     translate: (m) => {

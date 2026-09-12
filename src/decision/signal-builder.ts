@@ -254,7 +254,10 @@ function evaluateEvidence(
       // about avoiding double-counting the same pattern's evidence.
       const bonus = 0.5 * topPattern.confidence;
       indicatorBonus += bonus;
-      pushExtra('strategy', topPattern.name, bonus, `Harmonic Pattern strategy (+${bonus.toFixed(2)})`, topPattern.confidence);
+      const harmonicLabel = topPattern.harmonicType
+        ? `${topPattern.harmonicType} harmonic`
+        : 'Harmonic';
+      pushExtra('strategy', topPattern.name, bonus, `${harmonicLabel} strategy (+${bonus.toFixed(2)})`, topPattern.confidence);
     }
   }
 

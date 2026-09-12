@@ -72,6 +72,18 @@ describe('translateReason', () => {
     ]);
   });
 
+  it('translates type-specific harmonic strategy fragments with Russian harmonic names', () => {
+    expect(translateReason('gartley harmonic strategy (+0.50)')).toEqual([
+      'Подтверждение гармоническим паттерном «Гартли»',
+    ]);
+    expect(translateReason('butterfly harmonic strategy (+0.50)')).toEqual([
+      'Подтверждение гармоническим паттерном «Бабочка»',
+    ]);
+    expect(translateReason('ab-cd harmonic strategy (+0.50)')).toEqual([
+      'Подтверждение гармоническим паттерном «AB=CD»',
+    ]);
+  });
+
   it('returns an empty array for an empty reason', () => {
     expect(translateReason('')).toEqual([]);
   });

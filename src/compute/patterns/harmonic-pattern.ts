@@ -295,7 +295,10 @@ function checkPrzConfluence(
     intervalSec,
     CONFLUENCE_FRESHNESS_MAX_AGE_BARS,
   );
-  const overlapsPrz = (top: number, bottom: number) => top >= przLow && bottom <= przHigh;
+  // Epsilon для устойчивости к floating-point неточностям — особенно
+  // важно для AB=CD, где PRZ может вырождаться в точку (cdRange=[1,1]).
+  const PRZ_EPS = 1e-9;
+  const overlapsPrz = (top: number, bottom: number) => top >= przLow - PRZ_EPS && bottom <= przHigh + PRZ_EPS;
   const obConfluence = freshObs.some((ob) => overlapsPrz(ob.top, ob.bottom));
   if (obConfluence) return `PRZ confluence with ${wantType} order block`;
   const fvgConfluence = freshFvgs.some((f) => overlapsPrz(f.top, f.bottom));
@@ -530,7 +533,14 @@ export function detectHarmonicPattern(
   void structure;
 
   const cfg = config ?? DEFAULT_HARMONIC_CONFIG;
-  if (candles.length < 40) return null;
+  // Минимум данных для ATR-адаптивного ZigZag на ресэмплированном старшем ТФ:
+  // нужно htfFactor × (atrPeriod + 5) свечей базового ТФ, чтобы после
+  // ресэмплинга получилось хотя бы atrPeriod HTF-свечей (для прогрева ATR) +
+  // 5 точек ZigZag. Раньше стояло 40 — при htfFactor=5 это давало лишь 8
+  // HTF-свечей, недостаточно для 14-периодного ATR. Нижняя граница 40
+  // сохранена для htfFactor=1 (тесты с малыми фикстурами).
+  const minHistory = Math.max(40, cfg.htfFactor * (14 + 5));
+  if (candles.length < minHistory) return null;
 
   // Запрашиваем хвост из 7 точек ZigZag вместо ровно 5 — паттерн мог
   // "сложиться" на 1-2 точки ZigZag раньше самого последнего пятиточечного

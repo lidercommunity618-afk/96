@@ -4,7 +4,7 @@
 - **Symbol:** SYNTH-HARMONIC
 - **Timeframe:** 1m
 - **Period:** 2025-01-01(synthetic) → synthetic-generated
-- **Generated:** 2026-09-11T22:55:37.233Z
+- **Generated:** 2026-09-12T00:03:30.441Z
 
 ## In-Sample (70%)
 | Metric | Value |

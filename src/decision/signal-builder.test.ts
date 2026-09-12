@@ -529,7 +529,7 @@ describe('buildSignal — harmonic-pattern structural SL/TP and bonus (no double
     });
     expect(signal).not.toBeNull();
     expect(signal!.direction).toBe('buy');
-    expect(signal!.reason).toContain('Harmonic Pattern strategy');
+    expect(signal!.reason).toContain('gartley harmonic strategy');
   });
 
   it('uses the structural harmonicStop/harmonicTarget when they clear the minimum R:R', () => {
@@ -589,7 +589,7 @@ describe('buildSignal — harmonic-pattern structural SL/TP and bonus (no double
 
     expect(signal).not.toBeNull();
     expect(signal!.direction).toBe('sell');
-    expect(signal!.reason).not.toContain('Harmonic Pattern strategy');
+    expect(signal!.reason).not.toContain('gartley harmonic strategy');
     expect(signal!.factors.some((f) => f.kind === 'strategy' && f.name === 'harmonic-pattern')).toBe(false);
   });
 });
